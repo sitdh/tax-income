@@ -9,6 +9,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.sitdh.thesis.example.runnable.ApplicationRunnable;
+
 public class ApplicationNavigatorTest {
 	
 	private ApplicationNavigator appNav;
@@ -31,7 +33,7 @@ public class ApplicationNavigatorTest {
 	public void numberOfMenuListing() {
 		assertEquals(0, appNav.getMenuListing().size());
 		
-		Navigator nav = mock(Navigator.class);
+		ApplicationRunnable nav = mock(ApplicationRunnable.class);
 		when(nav.getNavigationName()).thenReturn("Hello");
 		
 		appNav.appendMenuList(nav);

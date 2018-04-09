@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://iserv.port.co.th/tlc" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" targetNamespace="http://iserv.port.co.th/tlc" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://iserv.port.co.th/tlc">
+      <s:element name="TLCDataUpload">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="passwrdMD5" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="year" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="month" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="berthNo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fileBytes" type="s:base64Binary" />
+            <s:element minOccurs="0" maxOccurs="1" name="filename" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fileType" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TLCDataUploadResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TLCDataUploadResult" type="tns:ResultMessage" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ResultMessage">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ResultCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ResultMessages" type="tns:ArrayOfString" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="TLCDataUploadString">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="passwrdMD5" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="year" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="month" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="berthNo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dataString" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="filename" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fileType" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TLCDataUploadStringResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TLCDataUploadStringResult" type="tns:ResultMessage" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="TLCDataUploadSoapIn">
+    <wsdl:part name="parameters" element="tns:TLCDataUpload" />
+  </wsdl:message>
+  <wsdl:message name="TLCDataUploadSoapOut">
+    <wsdl:part name="parameters" element="tns:TLCDataUploadResponse" />
+  </wsdl:message>
+  <wsdl:message name="TLCDataUploadStringSoapIn">
+    <wsdl:part name="parameters" element="tns:TLCDataUploadString" />
+  </wsdl:message>
+  <wsdl:message name="TLCDataUploadStringSoapOut">
+    <wsdl:part name="parameters" element="tns:TLCDataUploadStringResponse" />
+  </wsdl:message>
+  <wsdl:portType name="TLCServiceSoap">
+    <wsdl:operation name="TLCDataUpload">
+      <wsdl:input message="tns:TLCDataUploadSoapIn" />
+      <wsdl:output message="tns:TLCDataUploadSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TLCDataUploadString">
+      <wsdl:input message="tns:TLCDataUploadStringSoapIn" />
+      <wsdl:output message="tns:TLCDataUploadStringSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="TLCServiceSoap" type="tns:TLCServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="TLCDataUpload">
+      <soap:operation soapAction="http://iserv.port.co.th/tlc/TLCDataUpload" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TLCDataUploadString">
+      <soap:operation soapAction="http://iserv.port.co.th/tlc/TLCDataUploadString" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="TLCServiceSoap12" type="tns:TLCServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="TLCDataUpload">
+      <soap12:operation soapAction="http://iserv.port.co.th/tlc/TLCDataUpload" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TLCDataUploadString">
+      <soap12:operation soapAction="http://iserv.port.co.th/tlc/TLCDataUploadString" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="TLCService">
+    <wsdl:port name="TLCServiceSoap" binding="tns:TLCServiceSoap">
+      <soap:address location="http://iserv.port.co.th/tlc_test/upload.asmx" />
+    </wsdl:port>
+    <wsdl:port name="TLCServiceSoap12" binding="tns:TLCServiceSoap12">
+      <soap12:address location="http://iserv.port.co.th/tlc_test/upload.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

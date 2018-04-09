@@ -4,44 +4,50 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import com.sitdh.thesis.example.runnable.ApplicationRunnable;
+
 public class ApplicationNavigator {
 	
 	private String menuTitle;
 	
-	private List<Navigator> menuList;
+	private List<ApplicationRunnable> menuList;
 
 	public ApplicationNavigator(String menuTitle) {
 		this.menuTitle = menuTitle;
 		
-		this.menuList = new ArrayList<Navigator>();
+		this.menuList = new ArrayList<ApplicationRunnable>();
 	}
 	
-	public void appendMenuList(Navigator nav) {
+	public void appendMenuList(ApplicationRunnable nav) {
 		this.menuList.add(nav);
 	}
 	
-	public void appearMenu() {
+	@SuppressWarnings("resource")
+	public int appearMenu() {
 		int i = 1;
 		
 		Scanner choiceScan = new Scanner(System.in);
+		
 		System.out.println(menuTitle);
 		System.out.println();
-		for(Navigator nav : menuList) {
+		
+		for(ApplicationRunnable nav : menuList) {
 			System.out.println(String.format("%s. %s", i, nav.getNavigationName()));
 			i++;
 		}
+		
 		System.out.println("0. Quit");
 		System.out.println();
 		System.out.print("Choose one from above: ");
 		
-		int selection = choiceScan.nextInt();
+		return choiceScan.nextInt();
 	}
 
 	public String getMenuTitle() {
 		return menuTitle;
 	}
 
-	public List<Navigator> getMenuListing() {
+	public List<ApplicationRunnable> getMenuListing() {
 		// TODO Auto-generated method stub
 		return menuList;
 	}

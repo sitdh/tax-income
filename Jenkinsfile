@@ -1,5 +1,5 @@
 pipeline {
-  agent none
+  agent any
   stages {
     stage('Build') {
       parallel {
@@ -14,12 +14,11 @@ pipeline {
           }
         }
         stage('Analyze source code structure') {
-          agent {
-            docker { 
-              image 'maven:3.5-jdk-9' 
-              args '-v /root/.m2:/root/.m2' 
-            }
-          }
+          # agent {
+          #   docker { 
+          #     image 'maven:3.5-jdk-9' 
+          #   }
+          # }
           steps {
             sh 'mvn -B -DskipTests clean package'
             echo 'mvn package'

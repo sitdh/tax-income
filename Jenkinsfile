@@ -1,9 +1,14 @@
 pipeline {
   agent any
   stages {
-    stage('Stage 1') {
+    stage('Instrumatation') {
       steps {
-        echo 'Hello world'
+        echo 'Instrumenting source code'
+      }
+    }
+    stage('Collecting constants') {
+      steps {
+        echo 'Collecting constants from source code'
       }
     }
   }

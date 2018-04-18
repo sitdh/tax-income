@@ -1,11 +1,13 @@
 pipeline {
-  agent any
+  agent {
+      docker { image 'node:7-alpine' }
+  }
   stages {
     stage('Build') {
       parallel {
         stage('Collacting constant') {
           steps {
-            echo 'Hello'
+            sh 'node --version'
           }
         }
         stage('Instrumeting source code') {
@@ -14,6 +16,9 @@ pipeline {
           }
         }
         stage('Analyze source code structure') {
+          agent {
+            label 'docker'
+          }
           steps {
             sh 'mvn -B -DskipTests clean package'
             echo 'mvn package'

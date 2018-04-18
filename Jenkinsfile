@@ -2,8 +2,17 @@ pipeline {
   agent any
   stages {
     stage('Build') {
-      steps {
-        echo 'Build Jar file '
+      parallel {
+        stage('Build') {
+          steps {
+            echo 'Build Jar file '
+          }
+        }
+        stage('') {
+          steps {
+            echo 'hi'
+          }
+        }
       }
     }
     stage('Instrumatation') {

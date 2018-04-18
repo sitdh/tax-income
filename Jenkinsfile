@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        echo 'Build Jar file'
+        echo 'Build Jar file '
       }
     }
     stage('Instrumatation') {

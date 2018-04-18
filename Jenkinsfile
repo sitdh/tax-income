@@ -3,21 +3,21 @@ pipeline {
   stages {
     stage('Build') {
       parallel {
-        stage('Build') {
+        stage('Collacting constant') {
           steps {
             echo 'Build Jar file '
           }
         }
-        stage('') {
+        stage('Instrumeting source code') {
           steps {
             echo 'hi'
           }
         }
-      }
-    }
-    stage('Instrumatation') {
-      steps {
-        echo 'Instrumenting source code'
+        stage('Analyze source code structure') {
+          steps {
+            echo 'Create Jar file'
+          }
+        }
       }
     }
     stage('Collecting constants') {

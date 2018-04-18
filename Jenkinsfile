@@ -3,12 +3,6 @@ pipeline {
   stages {
     stage('Build') {
       parallel {
-        agent {
-          docker { 
-            image 'maven:3-alpine' 
-            args '-v /root/.m2:/root/.m2' 
-          }
-        }
         stage('Collacting constant') {
           steps {
             echo 'Hello'
@@ -20,6 +14,12 @@ pipeline {
           }
         }
         stage('Analyze source code structure') {
+          agent {
+            docker { 
+              image 'maven:3-alpine' 
+              args '-v /root/.m2:/root/.m2' 
+            }
+          }
           steps {
             sh 'mvn -B -DskipTests clean package'
             echo 'mvn package'

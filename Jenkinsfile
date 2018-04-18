@@ -16,7 +16,7 @@ pipeline {
         stage('Analyze source code structure') {
           agent {
             docker { 
-              image 'maven:3-alpine' 
+              image 'maven:3.5-jdk-9' 
               args '-v /root/.m2:/root/.m2' 
             }
           }

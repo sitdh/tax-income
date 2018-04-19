@@ -21,7 +21,7 @@ pipeline {
             }
           }
           steps {
-            sh 'mvn -B -DskipTests clean package'
+            sh 'mvn package -Dmaven.test.skip=true'
             echo 'mvn package'
           }
         }

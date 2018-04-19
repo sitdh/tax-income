@@ -14,13 +14,8 @@ pipeline {
           }
         }
         stage('Analyze source code structure') {
-          agent {
-            docker { 
-              image 'maven:3.5-jdk-9' 
-            }
-          }
           steps {
-            sh 'mvn package -Dmaven.test.skip=true'
+            sh 'mvn package'
             echo 'mvn package'
           }
         }

@@ -1,13 +1,11 @@
 pipeline {
-  agent {
-      docker { image 'node:7-alpine' }
-  }
+  agent none
   stages {
     stage('Build') {
       parallel {
         stage('Collacting constant') {
           steps {
-            sh 'node --version'
+            echo 'Hello'
           }
         }
         stage('Instrumeting source code') {
@@ -17,7 +15,10 @@ pipeline {
         }
         stage('Analyze source code structure') {
           agent {
-            docker { image: 'maven:3.5-jdk-9' }
+            docker { 
+              image 'maven:3.5-jdk-9' 
+              args '-v /root/.m2:/root/.m2' 
+            }
           }
           steps {
             sh 'mvn -B -DskipTests clean package'

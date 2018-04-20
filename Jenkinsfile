@@ -5,25 +5,42 @@ pipeline {
       parallel {
         stage('Collacting constant') {
           steps {
-            echo 'Hello'
+            echo 'Listing files from checked out repository'
+            echo 'Collecting constant'
           }
         }
         stage('Instrumeting source code') {
           steps {
-            echo 'hi'
+            echo 'Capture source code to another branch'
+            echo 'Add Traversal marker'
           }
         }
         stage('Analyze source code structure') {
           steps {
-            sh 'mvn package'
-            echo 'mvn package'
+            echo 'mvn package: create jar file'
+            echo 'Create call graph: call "staticg" from cg container'
           }
         }
       }
+      stage('Generate Test case') {
+        steps {
+          echo 'Listing files from checked out repository'
+          echo 'Collecting constant'
+        }
+      }
+      stage('Getting value file') {
+      }
     }
-    stage('Collecting constants') {
+    stage('Test') {
       steps {
-        echo 'Collecting constants from source code'
+        echo 'Path selection'
+        echo 'Random input data'
+        echo 'Generate test case'
+      }
+    }
+    stage('Inform') {
+      steps {
+        echo 'Mail to tester'
       }
     }
   }

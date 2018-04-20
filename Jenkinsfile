@@ -1,31 +1,35 @@
 pipeline {
-  agent any
+  agent none
   stages {
     stage('Build') {
       parallel {
-        stage('Collacting constant') {
+        stage('Collecting constants') {
+          agent any
           steps {
             echo 'Listing files from checked out repository'
             echo 'Collecting constant'
           }
         }
-        stage('Instrumeting source code') {
+        stage('Instrument source code') {
+          agent any
           steps {
-            echo 'Capture source code to another branch'
-            echo 'Add Traversal marker'
+            echo 'Listing files from checked out repository'
+            echo 'Collecting constant'
           }
         }
-        stage('Analyze source code structure') {
+        stage('Analyze source code') {
+          agent any
           steps {
-            echo 'mvn package: create jar file'
-            echo 'Create call graph: call "staticg" from cg container'
+            echo 'Listing files from checked out repository'
+            echo 'Collecting constant'
           }
         }
       }
-      stage('Generate Test case') {
-        steps {
-          echo 'Listing files from checked out repository'
-        }
+    }
+
+    stage('Test') {
+      steps('Test Case execute') {
+        echo 'hello'
       }
     }
   }

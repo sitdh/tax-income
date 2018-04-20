@@ -31,17 +31,5 @@ pipeline {
       stage('Getting value file') {
       }
     }
-    stage('Test') {
-      steps {
-        echo 'Path selection'
-        echo 'Random input data'
-        echo 'Generate test case'
-      }
-    }
-    stage('Inform') {
-      steps {
-        echo 'Mail to tester'
-      }
-    }
   }
 }

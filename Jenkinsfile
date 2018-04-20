@@ -25,10 +25,14 @@ pipeline {
           }
         }
       }
+
+      post {
+        echo 'Send message'
+      }
     }
 
     stage('Test') {
-      steps('Test Case execute') {
+      steps {
         echo 'hello'
       }
     }

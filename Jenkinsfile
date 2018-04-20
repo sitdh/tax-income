@@ -28,8 +28,21 @@ pipeline {
     }
 
     stage('Test') {
-      steps('Test Case execute') {
-        echo 'hello'
+      parallel {
+        steps('Test Case execute') {
+          echo 'hello'
+        }
+        steps('Test Case execute') {
+          echo 'hello'
+        }
+
+        post {
+          always {
+            mail  to: 'sitdhibong@gmail.com',
+                  subject: "Hello ${currentBuild.fullDisplayName}",
+                  body: 'Hello world'
+          }
+        }
       }
     }
   }

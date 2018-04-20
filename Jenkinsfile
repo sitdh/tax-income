@@ -25,10 +25,7 @@ pipeline {
       stage('Generate Test case') {
         steps {
           echo 'Listing files from checked out repository'
-          echo 'Collecting constant'
         }
-      }
-      stage('Getting value file') {
       }
     }
   }

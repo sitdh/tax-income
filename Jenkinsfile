@@ -27,7 +27,9 @@ pipeline {
       }
 
       post {
-        echo 'Send message'
+        always {
+          echo 'Send message'
+        }
       }
     }
 
